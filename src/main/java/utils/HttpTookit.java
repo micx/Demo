@@ -1,7 +1,7 @@
-/**
+package utils; /**
  * Created by lenovo on 2014/6/10.
  */
-import org.apache.commons.codec.binary.StringUtils;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
@@ -12,6 +12,7 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.commons.httpclient.util.URIUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,7 +38,7 @@ public final class HttpTookit {
      */
     public static String doGet(String url, String queryString, String charset, boolean pretty) {
         StringBuffer response = new StringBuffer();
-        HttpClient client = new HttpClient();
+        org.apache.commons.httpclient.HttpClient client = new org.apache.commons.httpclient.HttpClient();
         HttpMethod method = new GetMethod(url);
         try {
             if(queryString!=null && "".equals(queryString)==false)
