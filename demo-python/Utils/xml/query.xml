@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GBK" ?>
+<QueryReceipt>
+	<SequenceId>39355570</SequenceId>
+	<ThirdpartyId>13</ThirdpartyId>
+	<ThirdpartyKey>123456</ThirdpartyKey>
+	<DealId>6217029</DealId>
+	<SerialList>
+		<Serial>6301216286</Serial>
+		<Serial>4048614721</Serial>
+		<Serial>9400020787</Serial>
+	</SerialList>
+	<OrderId>265485898</OrderId>
+</QueryReceipt>
+

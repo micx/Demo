@@ -82,7 +82,7 @@ public class Config {
             "</QueryReceipt>";
 
     /**
-     * 腿卷接口 xml报文 格式
+     * 退卷接口 xml报文 格式
      */
     public static String refundReceiptXml="<?xml version=\"1.0\" encoding=\"GBK\" ?>" +
             "<RefundReceipt>" +

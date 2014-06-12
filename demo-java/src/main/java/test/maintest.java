@@ -2,6 +2,7 @@ package test;
 
 import config.Config;
 import dpinterface.*;
+import utils.DpUtils;
 
 /**
  * 测试接口：
@@ -17,10 +18,13 @@ import dpinterface.*;
 public class maintest {
     private static String verifyReceiptXml= Config.verifyReceiptXml;
     public static void main(String[] args) {
+
+//        System.out.println(DpUtils.buildMD5Sign(Config.verifyReceiptXml));
+
         DpThirdPartyInterface test = new DpThirdPartyInterface();
         //第三方向点评发起的请求测试
         System.out.println("verifyResult:\n"+test.verifyReceipt(Config.verifyReceiptXml));    //验卷测试
-        System.out.println("queryResult:\n"+test.queryReceipt(Config.queryReceiptXml));    //查询测试
+//        System.out.println("queryResult:\n"+test.queryReceipt(Config.queryReceiptXml));    //查询测试
 
         //点评向第三方发起的请求测试
 //        System.out.println("queryResult:\n"+test.sendReceipt(Config.sendReceiptXml));      //发卷测试
