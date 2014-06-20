@@ -8,8 +8,6 @@ print "verifyResult: "+verifyTest
 queryTest =  DpInterface.queryReceipt(Config.queryxml)
 print "queryResult: "+queryTest
 
-f = open("out.txt","w")
-f.write(queryTest)
 
 #发卷测试
 #sendTest =  DpInterface.sendReceipt(Config.sendxml)

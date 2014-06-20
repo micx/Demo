@@ -1,13 +1,25 @@
 package dpinterface;
 
 import config.Config;
+import org.apache.commons.httpclient.util.URIUtil;
+import org.apache.http.client.utils.URIUtils;
+import sun.net.util.URLUtil;
 import utils.DpUtils;
+import utils.HttpRequest;
+import utils.HttpServer;
 import utils.HttpTookit;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by chenxi.chen on 2014/06/11/下午2:16.
  */
 public class DpThirdPartyInterface {
+    private HttpServer httpServer = new HttpServer();
     /**
      * 说明：序列号发送接口。大众点评发起请求，对接方按规定格式返回。
      * 请求类型：GET
@@ -28,9 +40,9 @@ public class DpThirdPartyInterface {
      * 参数说明：sign为验签参数，xml为提交报文。
      * @return String
      */
-    public String queryReceipt(String xml){
+    public String queryReceipt(String xml) throws Exception {
         String param = "xml="+xml+"&"+"sign="+DpUtils.buildMD5Sign(xml);
-        String url = "http://"+Config.dpHost+"/thirdparty/queryreceipt?";
+        String url = "http://"+Config.dpHost+"/thirdparty/queryreceipt";
         String ret = HttpTookit.doGet(url, param, "GBK", true);
         return ret;
     }
@@ -41,7 +53,7 @@ public class DpThirdPartyInterface {
      * 参数说明：sign为验签参数，xml为提交报文。
      * @return String
      */
-    public String verifyReceipt(String xml){
+    public String verifyReceipt(String xml) throws Exception {
         String param = "xml="+xml+"&"+"sign="+DpUtils.buildMD5Sign(xml);
         String url = "http://"+Config.dpHost+"/thirdparty/verifyreceipt?";
         String ret = HttpTookit.doGet(url, param, "GBK", true);
@@ -57,8 +69,8 @@ public class DpThirdPartyInterface {
      */
     public String refundReceipt(String xml){
         String param = "xml="+xml+"&"+"sign="+DpUtils.buildMD5Sign(xml);
-        String url = "http://"+Config.thirdPartyHost+"/refundreceipt?";
-        String ret = HttpTookit.doGet(url, param, "GBK", true);
+        String url = "http://"+Config.thirdPart1yHost+"/refundreceipt?";
+        String ret = HttpTookit.doGet(url, param, "utf8", true);
         return ret;
     }
 }

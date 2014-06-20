@@ -15,7 +15,7 @@ def httprequest(url, xml):
 	data = "xml="+xml+"&"+"sign="+sign
 	req = urllib2.Request(url, data, Config.headers)
 	response = urllib2.urlopen(req)
-	the_page = response.read()
+	the_page = response.read().decode('GBK')
 	return the_page
 
 	

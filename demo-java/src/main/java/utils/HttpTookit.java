@@ -17,6 +17,7 @@ import org.apache.commons.logging.LogFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -37,6 +38,7 @@ public final class HttpTookit {
      * @return 返回请求响应的HTML
      */
     public static String doGet(String url, String queryString, String charset, boolean pretty) {
+        //System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 5.1;rv:9.0.1) Gecko/20100101 Firefox/9.0.1");
         StringBuffer response = new StringBuffer();
         org.apache.commons.httpclient.HttpClient client = new org.apache.commons.httpclient.HttpClient();
         HttpMethod method = new GetMethod(url);
@@ -58,8 +60,10 @@ public final class HttpTookit {
             }
         } catch (URIException e) {
             log.error("执行HTTP Get请求时，编码查询字符串“" + queryString + "”发生异常！", e);
+            return e.toString();
         } catch (IOException e) {
             log.error("执行HTTP Get请求" + url + "时，发生异常！", e);
+            return e.toString();
         } finally {
             method.releaseConnection();
         }
@@ -75,18 +79,23 @@ public final class HttpTookit {
      * @param pretty    是否美化
      * @return 返回请求响应的HTML
      */
-    public static String doPost(String url, Map<String, String> params, String charset, boolean pretty) {
+    public static String doPost(String url, Map<String, Object> params, String charset, boolean pretty) {
+        System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 5.1;rv:9.0.1) Gecko/20100101 Firefox/9.0.1");
+
         StringBuffer response = new StringBuffer();
         HttpClient client = new HttpClient();
         HttpMethod method = new PostMethod(url);
         //设置Http Post数据
         if (params != null) {
             HttpMethodParams p = new HttpMethodParams();
-            for (Map.Entry<String, String> entry : params.entrySet()) {
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
                 p.setParameter(entry.getKey(), entry.getValue());
             }
+            System.out.println("httptookit: "+p.toString());
             method.setParams(p);
+
         }
+        System.out.println(method.getParams());
         try {
             client.executeMethod(method);
             if (method.getStatusCode() == HttpStatus.SC_OK) {
@@ -109,7 +118,13 @@ public final class HttpTookit {
     }
 
     public static void main(String[] args) {
-        String y = doGet("http://video.sina.com.cn/life/tips.html", null, "GBK", true);
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("user","micx");
+        params.put("pass","1234");
+        String y = doPost("http://localhost:8080/servletdemo/login", params, "utf-8", true);
         System.out.println(y);
+//        String x = doPost("http://lavasoft.blog.51cto.com/62575/64994", new HashMap(),"utf8",true);
+//        System.out.println(x);
+
     }
 }
