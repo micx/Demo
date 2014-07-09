@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//com.demo.ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="User" type="com.demo.ibatis.model.User" />
+	
+	<!-- Result maps describe the mapping between the columns returned  
+       from a query, and the class properties.  A result map isn't  
+       necessary if the columns (or aliases) match to the properties   
+       exactly. -->  
+	<resultMap id="AllUsers" class="User" >
+		<result property="userId" column="ID"/>
+		<result property="userName" column="USERNAME"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="mobile" column="MOBILE"/>
+		<result property="email" column="EMAIL"/>
+	</resultMap>
+	<!-- Select with no parameters using the result map for User class. -->
+	<select id="getnewAllUsers" resultMap="AllUsers">
+		select *
+		from users
+	</select>
+	
+	
+	<select id="getAllUsers" resultClass="User">
+		select *
+		from users
+	</select>
+	
+	<!-- A simpler select example without the result map.  Note the   
+       aliases to match the properties of the target result class. -->  
+	<select id="getAllUsersUseAs" resultClass="User">
+		select ID as userId, USERNAME as userName,PASSWORD as password, MOBILE as mobile, EMAIL as email
+		from users
+	</select>
+	
+	
+	<!-- Insert example, using the Account parameter class -->  
+  <insert id="insertUser" parameterClass="User">  
+    insert into users(
+    	ID,
+    	USERNAME,
+    	PASSWORD,
+    	MOBILE,
+    	EMAIL
+    	) values(
+    	#userId#,
+    	#userName#,
+    	#password#,
+    	#mobile#,
+    	#email#
+    	);
+    	<selectKey keyProperty="userId" resultClass="int">
+			SELECT last_insert_id();
+		</selectKey>
+	</insert>
+	
+  
+  
+	<!-- Update example, using the Account parameter class -->  
+	<update id="updateUser" parameterClass="User">  
+    update users set  
+      ID = #userId#,  
+      USERNAME = #userName#,  
+      PASSWORD = #password#,
+      MOBILE = #mobile#,
+      EMAIL = #email#
+    where  
+      ID = #userId#  
+	</update>  
+	
+	
+	 <!-- Delete example, using an integer as the parameter class -->  
+	<delete id="deleteUserById" parameterClass="int">  
+    	delete from users where ID = #id#  
+	</delete>  
+	
+</sqlMap>
