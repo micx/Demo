@@ -7,6 +7,6 @@ public class RunTests {
     public static void main(String[] args) throws Exception
     {
         //处理MyTest类
-        TestProcessor.process("annotation.sample.MyTest");
+        TestProcessor.process("com.demo.annotation.sample.MyTest");
     }
 }
