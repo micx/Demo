@@ -7,6 +7,7 @@ import org.dom4j.io.SAXReader;
 import sun.tools.java.ClassPath;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -37,15 +38,17 @@ public class XmlBeanDefinitionReader {
 //        File file = new File(fileName);
 
         System.out.println(fileName+" "+file.canRead()+"  "+file.length()+" "+file.exists());
-        Document doc;
+        Document doc = null;
         try {
             doc = new SAXReader().read(file);
 
 		} catch (DocumentException e) {
 			throw new RuntimeException(e);
-		}
+		} catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
-		// 定位所有的bean
+        // 定位所有的bean
 		Iterator<?> beanIterator = doc.getRootElement().elementIterator("bean");
 		while (beanIterator.hasNext()) {
 			Element beanElm = (Element) beanIterator.next();
