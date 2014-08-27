@@ -4,6 +4,8 @@ import com.demo.ibatis.dao.UserDao;
 import com.demo.ibatis.model.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
 /**
  * Created by chenxi.chen on 2014/07/09/下午3:25.
  */
-public class UserDaoTest extends demo.ibatis.AbstractTestObject {
+public class UserDaoTest extends demo.ibatis.AbstractTestObject{
     @Autowired
     private UserDao userDao;
     @Test
