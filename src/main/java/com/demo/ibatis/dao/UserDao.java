@@ -1,12 +1,12 @@
 package com.demo.ibatis.dao;
 
+import com.demo.ibatis.model.User;
+import com.demo.ibatis.model.UserAddress;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
-import com.demo.ibatis.model.User;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.SQLException;
@@ -17,9 +17,15 @@ import java.util.List;
  */
 @Repository
 public class UserDao {
-    private SqlMapClient sqlMap = null;
-    @PostConstruct
-    public void init(){
+    private static UserDao userDao = new UserDao();
+    private static SqlMapClient sqlMap = null;
+
+
+
+    public static UserDao getInstance(){
+        return userDao;
+    }
+    static {
         String config = "config/sqlmap/SqlMapConfig.xml";
         Reader reader = null;
         try {
@@ -48,5 +54,8 @@ public class UserDao {
         System.out.println("\ndelete the user where id = 5");
         sqlMap.delete("deleteUserById", id);
         return true;
+    }
+    public List<UserAddress> getUserAddress(String geoHash) throws SQLException {
+        return sqlMap.queryForList("getAddressByGeoHash", geoHash);
     }
 }

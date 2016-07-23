@@ -59,7 +59,6 @@
         <appender-ref ref="log4jTestLogInfo" />
         <appender-ref ref="log4jTestDebug" />
     </category>
-
     <root>
         <priority value="error"/>
         <priority value="debug"/>

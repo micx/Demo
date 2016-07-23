@@ -4,10 +4,8 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import sun.tools.java.ClassPath;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -44,7 +42,7 @@ public class XmlBeanDefinitionReader {
 
 		} catch (DocumentException e) {
 			throw new RuntimeException(e);
-		} catch (MalformedURLException e) {
+		} catch (Exception e) {
             e.printStackTrace();
         }
 

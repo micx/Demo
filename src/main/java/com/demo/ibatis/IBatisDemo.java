@@ -9,9 +9,9 @@ import java.util.List;
 
 public class IBatisDemo {
 
-	private static UserDao userDao = new UserDao();
     public static void main(String[] args) throws IOException, SQLException {
-        List<User> list = userDao.getAllUsers();
+		UserDao userDao = UserDao.getInstance();
+		List<User> list = userDao.getAllUsers();
         showList(list);
 	}
 	private static void showList(List<User> list){

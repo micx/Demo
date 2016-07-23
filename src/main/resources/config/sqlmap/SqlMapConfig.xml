@@ -4,6 +4,16 @@
     "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 <sqlMapConfig>
 	<properties resource="config/sqlmap/jdbc.properties" />
+	<settings
+			useStatementNamespaces="true"
+			cacheModelsEnabled="true"
+			enhancementEnabled="true"
+			lazyLoadingEnabled="true"
+			errorTracingEnabled="false"
+			maxRequests="32"
+			maxSessions="10"
+			maxTransactions="5"
+	/>
 	<transactionManager type="JDBC">
 		<dataSource type="SIMPLE">
 			<property name="JDBC.Driver" value="${jdbc.driverClassName}" />
@@ -12,5 +22,9 @@
 			<property name="JDBC.Password" value="${jdbc.password}" />
 		</dataSource>
 	</transactionManager>
+
+
 	<sqlMap resource="config/sqlmap/User.xml" />
+	<sqlMap resource="config/sqlmap/Address.xml" />
+
 </sqlMapConfig>

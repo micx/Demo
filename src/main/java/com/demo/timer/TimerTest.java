@@ -15,13 +15,13 @@ public class TimerTest {
         // 指定01:00:00点执行
         calendar.setTime(new Date());
         System.out.println(sdf.format(calendar.getTime()));
-        calendar.set(Calendar.HOUR_OF_DAY, 13);
+//        calendar.set(Calendar.HOUR_OF_DAY, 13);
 //        calendar.set(Calendar.MINUTE, 0);
 //        calendar.set(Calendar.SECOND, 0);
 //        calendar.add(Calendar.DATE, 1);
         System.out.println(sdf.format(calendar.getTime()));
 
-  Timer timer = new Timer();
+        Timer timer = new Timer();
 
         //timer.schedule(new NoticeTask(),date);
         // 若需循环执行，需改为以下代码

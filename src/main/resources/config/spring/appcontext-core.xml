@@ -6,11 +6,22 @@
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-	http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
 	<context:component-scan base-package="com.demo.ibatis.dao" />
 	
 	<context:annotation-config />
+    <context:component-scan base-package="com.demo.springbean" />
+    <context:component-scan base-package="com.demo.aspect**" />
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<bean id="test" class="com.demo.aspect.TestBean"/>
+	<bean id="atest" class="com.demo.aspect.AnotherTest"/>
+	<bean class="com.demo.aspect.AspectJTest"/>
+
+
 
 </beans>
