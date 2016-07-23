@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//com.demo.ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="address" type="com.demo.ibatis.model.UserAddress" />
+	
+	<!-- Result maps describe the mapping between the columns returned  
+       from a query, and the class properties.  A result map isn't  
+       necessary if the columns (or aliases) match to the properties   
+       exactly. -->  
+	<resultMap id="addressMap" class="address" >
+		<result property="address" column="address"/>
+		<result property="lat" column="lat"/>
+		<result property="lng" column="lng"/>
+	</resultMap>
+	<!-- Select with no parameters using the result map for User class. -->
+	<select id="getAddressByGeoHash" resultMap="addressMap">
+		select address, lat, lng
+		from TA_BIZ_Address
+		where geohash like CONCAT(#geoHash#, "%")
+	</select>
+
+
+</sqlMap>

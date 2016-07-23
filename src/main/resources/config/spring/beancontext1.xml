@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "/spring-beans.dtd">
+<beans>
+    <bean name="micx, hello, hahaha, testbean" class="com.demo.springbean.BeanServiceImpl">
+        <!--<property name="name" value="beancontext1" />-->
+    </bean>
+</beans>

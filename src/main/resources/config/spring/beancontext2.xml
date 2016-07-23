@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "/spring-beans.dtd">
+<beans>
+    <bean id="testbean" class="com.demo.springbean.BeanServerImpl">
+        <!--<property name="name" value="beancontext2" />-->
+    </bean>
+
+    <bean class="com.demo.springbean.BeanServerImpl">
+        <!--<property name="name" value="beancontext2" />-->
+    </bean>
+
+    <bean class="com.demo.springbean.BeanServerImpl">
+        <!--<property name="name" value="beancontext2" />-->
+    </bean>
+
+    <bean class="com.demo.springbean.BeanServerImpl">
+        <!--<property name="name" value="beancontext2" />-->
+    </bean>
+</beans>

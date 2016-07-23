@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "/spring-beans.dtd">
+<beans>
+    <bean id="factoryBeanOne" class="com.demo.factorybean.MyFactoryBean" >
+        <property name="flag">
+            <value>true</value>
+        </property>
+    </bean>
+
+    <bean id="factoryBeanTwo" class="com.demo.factorybean.MyFactoryBean" >
+    <property name="flag">
+        <value>false</value>
+    </property>
+    </bean>
+</beans>
